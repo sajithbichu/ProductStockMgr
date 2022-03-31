@@ -1,0 +1,69 @@
+﻿@*@model ProductStockMgr.Models.StockDetailsIn*@
+
+
+@{
+    ViewData["Title"] = "Products Stock Out";
+}
+
+<div class="container p-3">
+    <div class="row pt-4">
+        <div class="col-6">
+            <h2 class="text-primary">Product Stock Out - List</h2>
+        </div>
+        <div class="col-6 text-end">
+            Search Product &nbsp;&nbsp;     <input id="txtProductName" type="text" />
+        </div>
+    </div>
+</div>
+
+<table class="table table-bordered table-striped  table-hover" id="tblProduct" style="width:100%">
+    <tr class="table-warning">
+        <th style="width: 50%">Product Name</th>
+        <th style="width: 50%">Stock Out</th>
+        <th></th>
+    </tr>
+</table>
+
+
+
+<script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/1.8.3/jquery.min.js"></script>
+<script type="text/javascript">
+
+    $(document).ready(function () {
+
+            //$(function () {
+                GetProduct();
+                $("#txtProductName").keyup(function () {
+                    GetProduct();
+                });
+            //});
+
+            function GetProduct() {
+                $.ajax({
+                    type: "POST",
+                    url: "/Home/SearchProductStockOut",
+                    data: JSON.stringify($.trim($("#txtProductName").val())),
+                    contentType: "application/json; charset=utf-8",
+                    dataType: "json",
+                    success: function (product) {
+                        var table = $("#tblProduct");
+                        table.find("tr:not(:first)").remove();
+                        $.each(product, function (i, product) {
+                            var table = $("#tblProduct");
+                            var row = table[0].insertRow(-1);
+                            $(row).append("<td />");''
+                            $(row).find("td").eq(0).html(product.name);
+                            $(row).append("<td />");
+                            $(row).find("td").eq(1).html(product.qty);
+                            $(row).append("<td />");
+                            $(row).find("td").eq(2).html(
+
+                                "<a href='/Home/AddStocksOut?productId=" + product.productId + "' class='btn btn-primary mx-2' style='width:150px'> <i class='bi bi-clipboard-minus'></i> Deduct Stock</a>"
+                            );
+                        });
+                    }
+                });
+            }
+
+             });
+</script>

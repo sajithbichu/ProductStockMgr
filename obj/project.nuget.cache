@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "8HAZT/GTtv51jrWLf4dYLk7QV19+vWu50hvtCtzIGr0IRLgd4ceqqxejswAZFY1Gx/1YTT8lUd42dvRdFqF5aQ==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Sajith\\Desktop\\Project\\ProductStockMgr\\ProductStockMgr\\ProductStockMgr.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Sajith\\.nuget\\packages\\newtonsoft.json\\13.0.1\\newtonsoft.json.13.0.1.nupkg.sha512"
+  ],
+  "logs": []
+}

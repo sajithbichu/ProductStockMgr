@@ -1,0 +1,38 @@
+﻿@model ProductStockMgr.Models.Product
+
+
+<form method="post" asp-controller="Home" asp-action="CreateProduct" autocomplete="off">
+    <div class="border p-3 mt-4">
+        <div class="row pb-2">
+            <h2 class="text-primary">Create Product</h2>
+            </hr>
+        </div>
+        <div asp-validation-summary="All">
+        </div>
+        <p style="color:red">
+            @Html.Label("",Convert.ToString((string)ViewBag.Duplicate))
+        </p>
+        <div class="mb-3">
+            <label>Product Name</label>
+            <input name="name" asp-for="name" class="form-control" type="text" data-val="true" data-val-required="The name field is required." />
+            <span asp-validation-for="name" class="text-danger"></span>
+        </div>
+        <div class="mb-3">
+            <label>Quantity</label>
+            <input name="qty" asp-for="qty" min="1" class="form-control" type="number" data-val-required="The Quantity field is required." />
+        </div>
+        <button type="submit" class="btn btn-primary" style="width:150px">Create</button>
+        <a asp-controller="Home" asp-action="Products" class="btn btn-secondary" style="width:150px">Back to List</a>
+    </div>
+
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validate/1.19.1/jquery.validate.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-validation-unobtrusive/3.2.11/jquery.validate.unobtrusive.min.js"></script>
+</form>
+
+@section scripts{
+@{
+    <partial name="_ValidationScriptsPartial" />
+}
+}
